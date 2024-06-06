@@ -1,8 +1,8 @@
-import Entrada from "../atvi-wb-typescript-master/src/io/entrada";
-import Empresa from "../atvi-wb-typescript-master/src/modelo/empresa"
-import CadastroCliente from "../atvi-wb-typescript-master/src/negocio/cadastroCliente";
-import CadastroProduto from "../atvi-wb-typescript-master/src/negocio/cadastroProduto";
-import ListagemClientes from "../atvi-wb-typescript-master/src/negocio/listagemClientes";
+import Entrada from "../src/io/entrada";
+import Empresa from "../src/modelo/empresa"
+import CadastroCliente from "../src/negocio/cadastroCliente";
+import CadastroProduto from "../src/negocio/cadastroProduto";
+import ListagemClientes from "../src/negocio/listagemClientes";
 
 console.log(`Bem-vindo ao cadastro de clientes do Grupo World Beauty`)
 let empresa = new Empresa()

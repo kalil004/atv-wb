@@ -1,21 +1,22 @@
-import Entrada from "../io/entrada";
-import Servico from "../modelo/servico";
-import Cadastro from "./cadastro";
+import Entrada from "../io/entrada"
+import Cadastro from "./cadastro"
+import Servico from "../modelo/servico"
 
-export default class CadastroServiço extends Cadastro {
-    private servicos: Array<Servico>
+
+export default class CadastroServicos extends Cadastro{
+    private nome : Array<Servico>
     private entrada: Entrada
-    constructor (servicos: Array<Servico>) {
+    constructor(nome : Array<Servico>){
         super()
-        this.servicos = servicos
+        this.nome = nome
         this.entrada = new Entrada()
     }
     public cadastrar(): void {
-        console.log(`\nInício do cadastro de serviço`);
-        let nome = this.entrada.receberTexto(`Por favor, informe o nome do serviço`);
-        let servico = new Servico(nome);
-        this.servicos.push(servico)
-        console.log(`\n Cadastro concluído\n`);
-
+        console.log(`\n Cadastro do serviço`);
+        let nome = this.entrada.receberTexto(`Insira o nome do serviço: `) 
+        let preco = this.entrada.receberNumero(`Insira o preço do serviço: `)
+        let servico = new Servico(nome, preco);
+        this.nome.push(servico)
+        console.log(`\n Cadastro concluído! \n`);
     }
 }

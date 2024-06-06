@@ -2,20 +2,21 @@ import Entrada from "../io/entrada";
 import Cadastro from "./cadastro";
 import Produto from "../modelo/produto";
 
-export default class CadastroProduto extends Cadastro {
-    private produtos: Array<Produto>
+
+export default class CadastroProdutos extends Cadastro{
+    private nome : Array<Produto>
     private entrada: Entrada
-    constructor (produtos: Array<Produto>) {
+    constructor(nome : Array<Produto>){
         super()
-        this.produtos = produtos
+        this.nome = nome
         this.entrada = new Entrada()
     }
     public cadastrar(): void {
-        console.log(`\nInício do cadastro de produto`);
-        let nome = this.entrada.receberTexto(`Por favor, informe o nome do produto`);
-        let produto = new Produto(nome);
-        this.produtos.push(produto)
-        console.log(`\n Cadastro concluído\n`);
-
+        console.log(`\n Cadastro do produto`);
+        let nome = this.entrada.receberTexto(`Insira o nome do produto: `)
+        let preco = this.entrada.receberNumero(`Insira o preço do produto: `)
+        let produto = new Produto(nome, preco);
+        this.nome.push(produto)
+        console.log(`\n Cadastro concluído:)\n`);   
     }
 }
