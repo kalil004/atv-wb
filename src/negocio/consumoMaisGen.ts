@@ -27,7 +27,7 @@ export default class MaisConsumoPorGenero implements Listagem {
             quantidade: 0
           });
   
-          produtosMaisConsumidosFeminino.push({ 
+        produtosMaisConsumidosFeminino.push({ 
             produto: nomeProduto,
             quantidade: 0
           });
