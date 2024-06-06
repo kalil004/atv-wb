@@ -52,14 +52,14 @@ export default class MaisConsumoPorGenero implements Listagem {
         });
   
         console.log(`\nProduto mais consumido:`);
-        console.log('Produto mais consumido masculino');
+        console.log('Produtos mais consumidos pelo gênero masculino');
         console.table(
           produtosMaisConsumidosMasculino.sort((
             a: { quantidade: number },
             b: { quantidade: number }
           ) => b.quantidade = a.quantidade).slice(0, 1)
         );
-        console.log('Produto mais consumido feminino');
+        console.log('Produtos mais consumidos pelo gênero feminino');
         console.table(
           produtosMaisConsumidosFeminino.sort((
             a: { quantidade: number },
