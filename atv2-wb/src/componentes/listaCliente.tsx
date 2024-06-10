@@ -9,14 +9,38 @@ type props = {
 
 export default class ListaCliente extends Component<props> {
     render() {
-        let estilo = `collection-item active ${this.props.tema}`
+        let estilo = `collection-item active purple lighten-2 ${this.props.tema}`
         return (
-            <div className="collection">
-                <a className="collection-item">Cliente 1</a>
-                <a className={estilo}>Cliente 2</a>
-                <a className="collection-item">Cliente 3</a>
-                <a className="collection-item">Cliente 4</a>
-            </div>
+<table>
+        <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>CPF</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Kalil Alves</td>
+            <td>Masculino</td>
+            <td>12991302250</td>
+            <td>542544388-93</td>
+          </tr>
+          <tr>
+            <td>Sandro Pimentel</td>
+            <td>Masculino</td>
+            <td>12996277345</td>
+            <td>000000000-00</td>
+          </tr>
+          <tr>
+            <td>João Eduardo</td>
+            <td>Masculino</td>
+            <td>12996521142</td>
+            <td>000000000-00</td>
+          </tr>
+        </tbody>
+      </table>
         )
     }
 }

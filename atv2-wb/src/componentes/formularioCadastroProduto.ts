@@ -4,7 +4,7 @@ type props = {
     tema: string
 }
 
-export default class FormularioCadastroCliente extends Component<props> {
+export default class FormularioCadastroProduto extends Component<props> {
     
     render() {
         let estiloBotao = `btn waves-effect waves-light purple lighten-1 ${this.props.tema}`
