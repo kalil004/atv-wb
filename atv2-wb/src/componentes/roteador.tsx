@@ -6,6 +6,9 @@ import FormularioCadastroProduto from "./formularioCadastroProduto";
 import ListaCliente from "./listaCliente";
 import ListaProduto from "./listaProduto";
 import ListaServiço from "./listaServiço";
+import Listagem from "./listagem";
+import FormularioCadastroServiço from "./formularioCadastroServiço";
+import CadastroCompras from "./compras";
 
 type state = {
     tela: string
@@ -73,8 +76,27 @@ export default class Roteador extends Component<{}, state> {
                 </>
             )
             
+        } else if (this.state.tela === 'Cadastrar Serviço') {
+            return (
+                <>
+                {barraNavegacao}
+                <FormularioCadastroServiço tema="purple-lighten4" />
+                </>
+            )
+        } else if (this.state.tela === 'Compras') {
+            return (
+                <>
+                {barraNavegacao}
+                <CadastroCompras tema="purple-lighten4" />
+                </>
+            )
+        } else if (this.state.tela === 'Listagem') {
+            return (
+                <>
+                {barraNavegacao}
+                <Listagem tema="purple-lighten4" />
+                </>
+            )
         }
-        
-
     }
 }
