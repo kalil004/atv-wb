@@ -15,7 +15,7 @@ export default class FormularioCadastroServiço extends Component<Props> {
                     <div className="row">
                         <div className="input-field col s6">
                             <input id="name" type="text" className="validate" />
-                            <label htmlFor="name">Nome</label>
+                            <label htmlFor="name">Nome do serviço</label>
                         </div>
                         </div>
                         <div className="input-field col s6">

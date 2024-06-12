@@ -3,12 +3,15 @@ import BarraNavegacao from "./barraNavegacao";
 import Home from "./home";
 import FormularioCadastroCliente from "./formularioCadastroCliente";
 import FormularioCadastroProduto from "./formularioCadastroProduto";
-import ListaCliente from "./listaCliente";
+import ListaClientes from "./listaCliente";
 import ListaProduto from "./listaProduto";
 import ListaServiço from "./listaServiço";
 import Listagem from "./listagem";
 import FormularioCadastroServiço from "./formularioCadastroServiço";
 import CadastroCompras from "./compras";
+import EditarCliente from "./editarCliente";
+import EditarProduto from "./editarProduto";
+import EditarServiço from "./editarServiço";
 
 type state = {
     tela: string
@@ -32,7 +35,7 @@ export default class Roteador extends Component<{}, state> {
     }
 
     render() {
-        let barraNavegacao = <BarraNavegacao seletorView={this.selecionarView} tema="purple lighten-2" botoes={['Home', 'Clientes', 'Produtos', 'Serviços', 'Cadastrar Cliente', 'Cadastrar Produto', 'Cadastrar Serviço', 'Compras', 'Listagem', 'Editar Cliente', 'Editar Produto']} />
+        let barraNavegacao = <BarraNavegacao seletorView={this.selecionarView} tema="purple lighten-2" botoes={['Home', 'Clientes', 'Produtos', 'Serviços', 'Cadastrar Cliente', 'Cadastrar Produto', 'Cadastrar Serviço', 'Compras', 'Listagem', 'Editar Cliente', 'Editar Produto', 'Editar Serviço']} />
         if (this.state.tela === 'Home') {
             return (
                 <>
@@ -44,7 +47,7 @@ export default class Roteador extends Component<{}, state> {
             return (
                 <>
                     {barraNavegacao}
-                    <ListaCliente tema="purple lighten-4" />
+                    <ListaClientes tema="purple lighten-4" />
                 </>
             )
         } else if (this.state.tela === 'Produtos') {
@@ -95,6 +98,27 @@ export default class Roteador extends Component<{}, state> {
                 <>
                 {barraNavegacao}
                 <Listagem tema="purple-lighten4" />
+                </>
+            )
+        } else if (this.state.tela === 'Editar Cliente') {
+            return (
+                <>
+                {barraNavegacao}
+                <EditarCliente tema="purple-lighten4" />
+                </>
+            )
+        } else if (this.state.tela === 'Editar Produto') {
+            return (
+                <>
+                {barraNavegacao}
+                <EditarProduto tema="purple-lighten4" />
+                </>
+            )
+        } else if (this.state.tela === 'Editar Serviço') {
+            return (
+                <>
+                {barraNavegacao}
+                <EditarServiço tema="purple-lighten4" />
                 </>
             )
         }

@@ -9,71 +9,70 @@ type props = {
 
 export default class Listagem extends Component<props> {
     render() {
-        let estilo = `collection-item active purple lighten-2 ${this.props.tema}`
         return (
 <>
-                <div className="row">
+            <div className="row">
                     <div id="clientesMaisConsumiram" className="col s12">
                         <div className="row">
-                        <h5 className="text-align: center">Clientes que mais consumiram produtos e serviços, (em quantidade)</h5>
+                        <h4 className="text-align: center">Clientes que mais consumiram produtos e serviços (em quantidade)</h4>
                             <div className="col s12" >
                                 <table className="centered striped responsive-table">
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
-                                            <th>Produtos consumidos</th>
-                                            <th>Serviços utilizados</th>
+                                            <th>Produtos comprados</th>
+                                            <th>Serviços consumidos</th>
                                         </tr>
                                     </thead>
     
                                     <tbody>
                                         <tr>
                                             <td>Kalil</td>
-                                            <td>16</td>
-                                            <td>12</td>
+                                            <td>18</td>
+                                            <td>10</td>
                                         </tr>
                                         <tr>
                                             <td>Sandro</td>
-                                            <td>12</td>
+                                            <td>14</td>
                                             <td>10</td>
                                         </tr>
                                         <tr>
                                             <td>João</td>
-                                            <td>8</td>
+                                            <td>10</td>
                                             <td>8</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <hr></hr>
+
                         <div className="row">
-                        <h5 className="text-align: center">Clientes que mais consumiram produtos e serviços (em valor)</h5>
+                        <h4 className="text-align: center">Clientes que mais consumiram produtos e serviços (em valor)</h4>
                             <div className="col s12" >
                                 <table className="centered striped responsive-table ">
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
-                                            <th>Valor total de produtos</th>
-                                            <th>Valor total de serviços</th>
+                                            <th>Valor total dos produtos</th>
+                                            <th>Valor total dos serviços</th>
                                         </tr>
                                     </thead>
     
                                     <tbody>
                                         <tr>
                                             <td>Sandro</td>
-                                            <td>R$160</td>
-                                            <td>R$120</td>
+                                            <td>R$360</td>
+                                            <td>R$420</td>
                                         </tr>
                                         <tr>
                                             <td>Kalil</td>
-                                            <td>R$120</td>
-                                            <td>R$100</td>
+                                            <td>R$220</td>
+                                            <td>R$140</td>
                                         </tr>
                                         <tr>
                                             <td>João</td>
-                                            <td>R$80</td>
-                                            <td>R$80</td>
+                                            <td>R$180</td>
+                                            <td>R$100</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -83,7 +82,7 @@ export default class Listagem extends Component<props> {
                     
                     <div id="generoClientes" className="col s12">
                         <div className="row">
-                        <h5 className="text-align: center">Clientes (por gênero)</h5>
+                        <h4 className="text-align: center">Clientes (por gênero)</h4>
                             <div className="col s12" >
                                 <table className="centered striped responsive-table ">
                                     <thead>
@@ -110,8 +109,8 @@ export default class Listagem extends Component<props> {
                                 </table>
                             </div>
                         </div>
-                        <hr></hr>
-                        <h5 className="text-align: center">Produtos e serviços mais consumidos (por gênero)</h5>
+
+                        <h4 className="text-align: center">Produtos e serviços mais consumidos (por gênero)</h4>
                         <div className="row">
                             <div className="col s6" >
                                 <table className="centered striped responsive-table ">
@@ -161,7 +160,7 @@ export default class Listagem extends Component<props> {
     
                     <div id="produtosServicosMaisConsumidos" className="col s12">
                         <div className="row" >
-                        <h5 className="text-align: center">Produtos mais consumidos</h5>
+                        <h4 className="text-align: center">Produtos mais comprados</h4>
                             <div className="col s12">
                                 <table className="centered striped responsive-table ">
                                     <thead>
@@ -184,9 +183,9 @@ export default class Listagem extends Component<props> {
                                 </table>
                             </div>
                             </div>
-                            <hr></hr>
+
                             <div className="row">
-                            <h5 className="text-align: center">Serviços mais consumidos</h5>
+                            <h4 className="text-align: center">Serviços mais consumidos</h4>
                             <div className="col s12">
                                 <table className="centered striped responsive-table ">
                                     <thead>
@@ -213,7 +212,7 @@ export default class Listagem extends Component<props> {
     
                     <div id="clientesMenosConsumiram" className="col s12">
                     <div className="row">
-                    <h5 className="text-align: center">Clientes que menos consumiram</h5>
+                    <h4 className="text-align: center">Clientes que menos consumiram</h4>
                                 <div className="col s12">
                                     <table className="centered striped responsive-table ">
                                         <thead>

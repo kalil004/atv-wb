@@ -8,9 +8,8 @@ type props = {
 
 export default class ListaServiço extends Component<props> {
     render() {
-        let estilo = `collection-item active purple lighten-2 ${this.props.tema}`
         return (
-<table>
+        <table>
         <thead>
           <tr>
               <th>Nome</th>
