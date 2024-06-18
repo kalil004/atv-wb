@@ -25,6 +25,7 @@ export default class Cliente {
         this.produtosConsumidos = []
         this.servicosConsumidos = []
     }
+
     public get getCpf(): CPF {
         return this.cpf
     }

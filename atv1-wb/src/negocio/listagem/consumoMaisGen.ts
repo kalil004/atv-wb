@@ -3,132 +3,106 @@ import Produto from "../../modelo/produto";
 import Servico from "../../modelo/servico";
 import Listagem from "../listagem";
 
-export default class MaisConsumidosGenero extends Listagem {
-  private clientes: Array<Cliente>;
-  private produtos: Array<Produto>;
-  private servicos: Array<Servico>;
-  constructor(clientes: Array<Cliente>, produtos: Array<Produto>, servicos: Array<Servico>) {
-      super();
-      this.clientes = clientes;
-      this.produtos = produtos;
-      this.servicos = servicos;
-  }
+export default class MaisConsumidosGenero implements Listagem {
+    private clientes: Array<Cliente>;
+    private produtos: Array<Produto>;
+    private servicos: Array<Servico>;
 
-  public listar(): void {
-      console.log('Produtos e Serviços mais consumidos por gênero:');
+    constructor(clientes: Array<Cliente>, produtos: Array<Produto>, servicos: Array<Servico>) {
+        this.clientes = clientes;
+        this.produtos = produtos;
+        this.servicos = servicos;
+    }
 
-      const topProdutosFeminino: { nome: string, valor: number, quantidade: number }[] = [];
-      const topServicosFeminino: { nome: string, valor: number, quantidade: number }[] = [];
+    public listar(): void {
+        console.log('Produtos e Serviços mais consumidos por gênero:');
 
-      const topProdutosMasculino: { nome: string, valor: number, quantidade: number }[] = [];
-      const topServicosMasculino: { nome: string, valor: number, quantidade: number }[] = [];
 
-      console.log('Feminino');
+        const topProdutosFeminino: { nome: string, valor: number, quantidade: number }[] = [];
+        const topServicosFeminino: { nome: string, valor: number, quantidade: number }[] = [];
 
-      this.produtos.forEach(produto => {
-          topProdutosFeminino.push({ nome: produto.nome, valor: produto.preco, quantidade: 0 });
-      });
+        const topProdutosMasculino: { nome: string, valor: number, quantidade: number }[] = [];
+        const topServicosMasculino: { nome: string, valor: number, quantidade: number }[] = [];
 
-      topProdutosFeminino.forEach(prod => {
-          this.clientes.forEach(cliente => {
-              cliente.produtosConsumidos.forEach(prodConsumido => {
-                  if (prodConsumido.nome == prod.nome) {
-                      if (cliente.genero.toUpperCase() === 'F' || cliente.genero.toUpperCase() === 'FEMININO') {
-                          prod.quantidade = prod.quantidade + 1;
-                      }
-                  }
-              });
-          });
-      });
 
-      topProdutosFeminino.sort((prod1, prod2) => (prod1.quantidade > prod2.quantidade) ? -1 : 1);
-      console.log(`Produtos:`);
+        this.produtos.forEach(produto => {
+            topProdutosFeminino.push({ nome: produto.nome, valor: produto.preco, quantidade: 0 });
+            topProdutosMasculino.push({ nome: produto.nome, valor: produto.preco, quantidade: 0 });
+        });
 
-      let ordemProdFeminino = 1;
 
-      topProdutosFeminino.forEach(prod => {
-          console.log(`${ordemProdFeminino} - ${prod.nome}`);
-          ordemProdFeminino++;
-      });
+        this.servicos.forEach(servico => {
+            topServicosFeminino.push({ nome: servico.nome, valor: servico.preco, quantidade: 0 });
+            topServicosMasculino.push({ nome: servico.nome, valor: servico.preco, quantidade: 0 });
+        });
 
-      this.servicos.forEach(servico => {
-          topServicosFeminino.push({ nome: servico.nome, valor: servico.preco, quantidade: 0 });
-      });
 
-      topServicosFeminino.forEach(serv => {
-          this.clientes.forEach(cliente => {
-              cliente.servicosConsumidos.forEach(servConsumido => {
-                  if (servConsumido.nome == serv.nome) {
-                      if (cliente.genero.toUpperCase() === 'F' || cliente.genero.toUpperCase() === 'FEMININO') {
-                          serv.quantidade = serv.quantidade + 1;
-                      }
-                  }
-              });
-          });
-      });
+        this.clientes.forEach(cliente => {
+            if (cliente.genero.toUpperCase() === 'F' || cliente.genero.toUpperCase() === 'FEMININO') {
+                cliente.produtosConsumidos.forEach(prodConsumido => {
+                    const index = topProdutosFeminino.findIndex(prod => prod.nome === prodConsumido.nome);
+                    if (index !== -1) {
+                        topProdutosFeminino[index].quantidade++;
+                    }
+                });
 
-      topServicosFeminino.sort((serv1, serv2) => (serv1.quantidade > serv2.quantidade) ? -1 : 1);
-      console.log(`Serviços:`);
+                cliente.servicosConsumidos.forEach(servConsumido => {
+                    const index = topServicosFeminino.findIndex(serv => serv.nome === servConsumido.nome);
+                    if (index !== -1) {
+                        topServicosFeminino[index].quantidade++;
+                    }
+                });
+            }
+        });
 
-      let ordemServFeminino = 1;
+        topProdutosFeminino.sort((prod1, prod2) => (prod1.quantidade > prod2.quantidade) ? -1 : 1);
+        console.log(`\nProdutos mais consumidos pelo gênero feminino:`);
+        let ordemProdFeminino = 1;
+        topProdutosFeminino.forEach(prod => {
+            console.log(`${ordemProdFeminino} - ${prod.nome}`);
+            ordemProdFeminino++;
+        });
 
-      topServicosFeminino.forEach(serv => {
-          console.log(`${ordemServFeminino} - ${serv.nome}`);
-          ordemServFeminino++;
-      });
+        topServicosFeminino.sort((serv1, serv2) => (serv1.quantidade > serv2.quantidade) ? -1 : 1);
+        console.log(`\nServiços mais consumidos pelo gênero feminino:`);
+        let ordemServFeminino = 1;
+        topServicosFeminino.forEach(serv => {
+            console.log(`${ordemServFeminino} - ${serv.nome}`);
+            ordemServFeminino++;
+        });
 
-      this.produtos.forEach(produto => {
-          topProdutosMasculino.push({ nome: produto.nome, valor: produto.preco, quantidade: 0 });
-      });
+        this.clientes.forEach(cliente => {
+            if (cliente.genero.toUpperCase() === 'M' || cliente.genero.toUpperCase() === 'MASCULINO') {
+                cliente.produtosConsumidos.forEach(prodConsumido => {
+                    const index = topProdutosMasculino.findIndex(prod => prod.nome === prodConsumido.nome);
+                    if (index !== -1) {
+                        topProdutosMasculino[index].quantidade++;
+                    }
+                });
 
-      topProdutosMasculino.forEach(prod => {
-          this.clientes.forEach(cliente => {
-              cliente.produtosConsumidos.forEach(prodConsumido => {
-                  if (prodConsumido.nome == prod.nome) {
-                      if (cliente.genero.toUpperCase() === 'M' || cliente.genero.toUpperCase() === 'MASCULINO') {
-                          prod.quantidade = prod.quantidade + 1;
-                      }
-                  }
-              });
-          });
-      });
+                cliente.servicosConsumidos.forEach(servConsumido => {
+                    const index = topServicosMasculino.findIndex(serv => serv.nome === servConsumido.nome);
+                    if (index !== -1) {
+                        topServicosMasculino[index].quantidade++;
+                    }
+                });
+            }
+        });
 
-      console.log('Gênero Masculino:');
+        topProdutosMasculino.sort((prod1, prod2) => (prod1.quantidade > prod2.quantidade) ? -1 : 1);
+        console.log(`\nProdutos mais consumidos por gênero masculino:`);
+        let ordemProdMasculino = 1;
+        topProdutosMasculino.forEach(prod => {
+            console.log(`${ordemProdMasculino} - ${prod.nome}`);
+            ordemProdMasculino++;
+        });
 
-      topProdutosMasculino.sort((prod1, prod2) => (prod1.quantidade > prod2.quantidade) ? -1 : 1);
-      console.log(`Produtos:`);
-
-      let ordemProdMasculino = 1;
-
-      topProdutosMasculino.forEach(prod => {
-          console.log(`${ordemProdMasculino} - ${prod.nome}`);
-          ordemProdMasculino++;
-      });
-
-      this.servicos.forEach(servico => {
-          topServicosMasculino.push({ nome: servico.nome, valor: servico.preco, quantidade: 0 });
-      });
-
-      topServicosMasculino.forEach(serv => {
-          this.clientes.forEach(cliente => {
-              cliente.servicosConsumidos.forEach(servConsumido => {
-                  if (servConsumido.nome == serv.nome) {
-                      if (cliente.genero.toUpperCase() === 'M' || cliente.genero.toUpperCase() === 'MASCULINO') {
-                          serv.quantidade = serv.quantidade + 1;
-                      }
-                  }
-              });
-          });
-      });
-
-      topServicosMasculino.sort((serv1, serv2) => (serv1.quantidade > serv2.quantidade) ? -1 : 1);
-      console.log(`Serviços:`);
-
-      let ordemServMasculino = 1;
-
-      topServicosMasculino.forEach(serv => {
-          console.log(`${ordemServMasculino} - ${serv.nome}`);
-          ordemServMasculino++;
-      });
-  }
+        topServicosMasculino.sort((serv1, serv2) => (serv1.quantidade > serv2.quantidade) ? -1 : 1);
+        console.log(`\nServiços mais consumidos por gênero masculino:`);
+        let ordemServMasculino = 1;
+        topServicosMasculino.forEach(serv => {
+            console.log(`${ordemServMasculino} - ${serv.nome}`);
+            ordemServMasculino++;
+        });
+    }
 }

@@ -25,16 +25,20 @@ import CPF from "../modelo/cpf";
 import RG from "../modelo/rg";
 import Telefone from "../modelo/telefone";
 
-console.log(`Bem-vindo ao cadastro de clientes do Grupo World Beauty`)
-let empresa = new Empresa()
-let execucao = true
+console.log(`Bem-vindo ao cadastro de clientes do Grupo World Beauty`);
+let empresa = new Empresa();
+let execucao = true;
 
 for (let i = 1; i <= 30; i++) {
     let cpf = new CPF(`00000000000`, new Date());
     let rg = new RG(`0000000000`, new Date());
     let telefone = new Telefone(`12`, `99123-4567`);
-    let produtosConsumidos = empresa.getProdutos.slice(0, Math.floor(Math.random() * empresa.getProdutos.length));
-    let servicosConsumidos = empresa.getServicos.slice(0, Math.floor(Math.random() * empresa.getServicos.length));
+    
+    let numProdutosConsumidos = Math.floor(Math.random() * empresa.getProdutos.length) + 1;
+    let produtosConsumidos = empresa.getProdutos.slice(0, numProdutosConsumidos);
+
+    let numServicosConsumidos = Math.floor(Math.random() * empresa.getServicos.length) + 1;
+    let servicosConsumidos = empresa.getServicos.slice(0, numServicosConsumidos);
 
     let genero = i % 2 === 0 ? 'Masculino' : 'Feminino';
 
@@ -48,8 +52,19 @@ for (let i = 1; i <= 30; i++) {
     cliente.addRg(rg);
     cliente.addTelefones(telefone);
 
-    produtosConsumidos.forEach(produto => cliente.addProduto(produto));
-    servicosConsumidos.forEach(servico => cliente.addServico(servico));
+    produtosConsumidos.forEach(produto => {
+        let numConsumos = Math.floor(Math.random() * 5) + 1;
+        for (let j = 0; j < numConsumos; j++) {
+            cliente.addProduto(produto);
+        }
+    });
+
+    servicosConsumidos.forEach(servico => {
+        let numConsumos = Math.floor(Math.random() * 3) + 1; 
+        for (let j = 0; j < numConsumos; j++) {
+            cliente.addServico(servico);
+        }
+    });
 
     empresa.getClientes.push(cliente);
 }
@@ -159,6 +174,7 @@ while (execucao) {
         case 18:
             let consumoProduto = new ProdutosMaisConsumidos(empresa.getClientes, empresa.getProdutos)
             consumoProduto.listar()
+            break;
         case 19:
             execucao = false
             console.log(`Até mais.`)

@@ -2,30 +2,22 @@ import Cliente from "../../modelo/cliente";
 import Listagem from "../listagem";
 
 export default class ClientesMenosConsumo implements Listagem {
-    private cliente: Array<Cliente>
+    private clientes: Array<Cliente>;
 
-    constructor(cliente: Array<Cliente>) {
-        this.cliente = cliente
+    constructor(clientes: Array<Cliente>) {
+        this.clientes = clientes;
     }
-    
+
     public listar(): void {
-        let consumoCliente: { 
-          nome: string, 
-          quantidadeConsumo: number 
-        }[] = this.cliente.map(({
-          nome, 
-          getProdutosConsumidos: produtosConsumidos,
-        }) => ({
-          nome,
-          quantidadeConsumo: produtosConsumidos.length
+        let clienteConsumos: { nome: string, quantidadeConsumo: number }[] = this.clientes.map(cliente => ({
+            nome: cliente.nome,
+            quantidadeConsumo: cliente.getProdutosConsumidos.length + cliente.getServicosConsumidos.length
         }));
-        let consumoClienteSort = consumoCliente.sort((
-          a: { quantidadeConsumo: number },
-          b: { quantidadeConsumo: number }
-        ) => a.quantidadeConsumo - b.quantidadeConsumo);
+
+        clienteConsumos.sort((a, b) =>  a.quantidadeConsumo - b.quantidadeConsumo);
 
         console.log(`\nTop 10 clientes que menos consumiram:`);
-        console.table(consumoClienteSort.slice(0, 10));
+        console.table(clienteConsumos.slice(0, 10));
         console.log(`\n`);
     }
 }
