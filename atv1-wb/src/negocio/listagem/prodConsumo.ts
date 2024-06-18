@@ -5,8 +5,7 @@ import Cliente from "../../modelo/cliente";
 export default class ProdutosMaisConsumidos implements Listagem {
     private clientes: Array<Cliente>
     private produtos: Array<Produto>
-    constructor(
-      clientes: Array<Cliente>, produtos: Array<Produto>) {
+    constructor(clientes: Array<Cliente>, produtos: Array<Produto>) {
         this.clientes = clientes
         this.produtos = produtos
     }

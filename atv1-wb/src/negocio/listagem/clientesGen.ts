@@ -2,7 +2,7 @@ import Cliente from "../../modelo/cliente";
 import Listagem from "../listagem";
 
 
-export default class ListarClientesPorGenero implements Listagem {
+export default class ClientesPorGenero implements Listagem {
     private cliente: Array<Cliente>
 
     constructor(cliente: Array<Cliente>) {
